@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {saveAs} from 'file-saver';
-import {Certificate} from './Certificate';
-import {Event} from '@wca/helpers/lib/models/event';
-import {Result} from '@wca/helpers/lib/models/result';
-import {formatCentiseconds} from '@wca/helpers/lib/helpers/time';
-import {decodeMultiResult, formatMultiResult, isDnf} from '@wca/helpers/lib/helpers/result';
-import {TranslationHelper} from './translation';
-import {getEventName, Person} from '@wca/helpers';
-import {Helpers} from './helpers';
+import { Injectable } from '@angular/core';
+import { saveAs } from 'file-saver';
+import { Certificate } from './Certificate';
+import { Event } from '@wca/helpers/lib/models/event';
+import { Result } from '@wca/helpers/lib/models/result';
+import { formatCentiseconds } from '@wca/helpers/lib/helpers/time';
+import { decodeMultiResult, formatMultiResult, isDnf } from '@wca/helpers/lib/helpers/result';
+import { TranslationHelper } from './translation';
+import { getEventName, Person } from '@wca/helpers';
+import { Helpers } from './helpers';
 import * as JSZip from 'jszip';
 
 declare var pdfMake: any;
@@ -68,7 +68,7 @@ export class PrintService {
     return certificate;
   }
 
-  private formatResultForEvent(result: Result, eventId: string): string {
+  private formatResultForEvent(result: any, eventId: string): string {
     switch (eventId) {
       case '333fm':
         return result['average'] > 0 ? this.formatFmcMean(result['average']) : isDnf(result['best']) ? 'DNF' : result['best'];
@@ -182,10 +182,10 @@ export class PrintService {
       this.removeLastPageBreak(document);
       pdfMake.createPdf(document)
         .getBlob(blob => {
-          zipFolder.file(certificate.event + ' - ' + certificate.name + '.pdf', blob, {binary: true});
+          zipFolder.file(certificate.event + ' - ' + certificate.name + '.pdf', blob, { binary: true });
           counter++;
           if (counter === certificates.length) {
-            zipFolder.generateAsync({type: 'blob'}).then(function (content) {
+            zipFolder.generateAsync({ type: 'blob' }).then(function (content) {
               saveAs(content, 'Certificates ' + wcif.name + '.zip');
             });
           }
@@ -323,10 +323,10 @@ export class PrintService {
       this.removeLastPageBreakFromParticipationCertificates(document);
       pdfMake.createPdf(document)
         .getBlob(blob => {
-          zipFolder.file(certificate.name + '.pdf', blob, {binary: true});
+          zipFolder.file(certificate.name + '.pdf', blob, { binary: true });
           counter++;
           if (counter === personsWithAResult.length) {
-            zipFolder.generateAsync({type: 'blob'}).then(function (content) {
+            zipFolder.generateAsync({ type: 'blob' }).then(function (content) {
               saveAs(content, 'Participation certificates ' + wcif.name + '.zip');
             });
           }
@@ -377,11 +377,11 @@ export class PrintService {
     };
 
     table.table.body.push([TranslationHelper.getEvent(this.participationLanguage),
-      TranslationHelper.getResult(this.participationLanguage),
-      TranslationHelper.getRanking(this.participationLanguage)]);
+    TranslationHelper.getResult(this.participationLanguage),
+    TranslationHelper.getRanking(this.participationLanguage)]);
     wcif.events.forEach(event => {
       const array = [getEventName(event.id)];
-      const result: Result = this.findResultOfPersonInEvent(p, event);
+      const result: any = this.findResultOfPersonInEvent(p, event);
       if (result !== null && result.attempts.length > 0) { // If competitor has a result in this event
         array.push(this.formatResultForEvent(result, event.id));
         array.push(result.ranking + '');
@@ -391,9 +391,9 @@ export class PrintService {
 
     return {
       columns: [
-        {width: '*', text: ''},
+        { width: '*', text: '' },
         table,
-        {width: '*', text: ''},
+        { width: '*', text: '' },
       ]
     };
   }
