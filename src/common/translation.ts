@@ -118,6 +118,26 @@ export class TranslationHelper {
                     '{"text": "certificate.result", "bold": "true"},' + '\n' +
                     '" certificate.resultUnit"' + '\n' +
                     ']';
+            case 'es':
+                return '[' + '\n' +
+                    '"\\n\\n\\n",' + '\n' +
+                    '"La ",' + '\n' +
+                    '{"text": "World Cube Association", "bold": "true"},' + '\n' +
+                    '" y el equipo organizador de ",' + '\n' +
+                    '{"text": "certificate.competitionName", "bold": "true"},' + '\n' +
+                    '", otorga el presente reconocimiento a:",' + '\n' +
+                    '"\\n\\n\\n",' + '\n' +
+                    '{"text": "certificate.name", "fontSize": "32", "bold": "true"},' + '\n' +
+                    '"\\n\\n\\n",' + '\n' +
+                    '"por haber ganado el ",' + '\n' +
+                    '{"text": "certificate.place", "bold": "true"},",' + '\n' +
+                    '" en la categoría ",' + '\n' +
+                    '{"text": "certificate.event", "bold": "true"},' + '\n' +
+                    '"\\n",' + '\n' +
+                    '"con un promedio de: ",' + '\n' +
+                    '{"text": "certificate.result", "bold": "true"},' + '\n' +
+                    '" certificate.resultUnit"' + '\n' +
+                    ']';
             default:
                 return this.getTemplate('en');
         }
