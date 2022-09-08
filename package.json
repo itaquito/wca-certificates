@@ -18,7 +18,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@wca/helpers": "^1.1.1",
-    "core-js": "3.25.0",
+    "core-js": "3.25.1",
     "file-saver": "2.0.5",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.1",
